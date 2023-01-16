@@ -33,6 +33,10 @@ const baseConfig = {
   },
 };
 
+/**
+ * 使用统一入口, 一次性把所有的组件 build 到同一个目录
+ * e.g. dist/v2/index.es.js
+ */
 const buildAll = async () => {
   const config = _.cloneDeep(baseConfig);
   if (mode === 'vue3') {
@@ -70,6 +74,11 @@ const buildAll = async () => {
   await build(config);
 }
 
+/**
+ * 每个组件单独 build 一次,
+ * e.g. dist/v2/components/Button/Button.es.js   区分 vue2 vue3 的
+ * e.g. dist/v2/components/Button/RenderButton.es.js  使用 render function , 不区分 vue2 vue3
+ */
 const buildSplit = async () => {
   const config = _.cloneDeep(baseConfig);
   let comps = [];
